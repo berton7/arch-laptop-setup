@@ -84,11 +84,21 @@ manualinstall() { # Installs $1 manually if not installed. Used only for AUR hel
 	cd /tmp || return 1) ;}
 
 maininstall() { # Installs all needed programs from main repo.
-	dialog --title "LARBS Installation" --infobox "Installing \`$1\` ($n of $total). $1 $2" 5 70
+	dialog --title "LARBS Installation" --infobox "Installing \`$1\` ($n of $total). $2" 5 70
 	installpkg "$1"
 	}
 
 gitmakeinstall() {
+	progname="$(basename "$1" .git)"
+	dir="$repodir/$progname"
+	dialog --title "LARBS Installation" --infobox "Installing \`$progname\` ($n of $total) via \`git\` and \`make\`. $(basename "$1") $2" 5 70
+	sudo -u "$name" git clone --depth 1 "$1" "$dir" >/dev/null 2>&1 || { cd "$dir" || return 1 ; sudo -u "$name" git pull --force origin master;}
+	cd "$dir" || exit 1
+	make >/dev/null 2>&1
+	make install >/dev/null 2>&1
+	cd /tmp || return 1 ;}
+
+gitinstall() {
 	progname="$(basename "$1" .git)"
 	dir="$repodir/$progname"
 	dialog --title "LARBS Installation" --infobox "Installing \`$progname\` ($n of $total) via \`git\` and \`make\`. $(basename "$1") $2" 5 70
@@ -137,7 +147,7 @@ putgitrepo() { # Downloads a gitrepo $1 and places the files in $2 only overwrit
 
 finalize(){ \
 	dialog --infobox "Preparing welcome message..." 4 50
-	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user, then run the command \"startx\" to start the graphical environment (it will start automatically in tty1).\\n\\n.t Luke" 12 80
+	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user, then run the command \"sudo systemctl start sddm\" to start the graphical environment.\\n\\n.t Luke" 12 80
 	}
 
 ### THE ACTUAL SCRIPT ###
@@ -221,8 +231,9 @@ cd Orchis-theme && sh install.sh && cd .. && rm -rf Orchis-theme
 git clone https://github.com/vinceliuice/Tela-icon-theme.git --depth 1
 cd Tela-icon-theme && sh install.sh && cd .. && rm -rf Tela-icon-theme
 
-sudo -u "$name" systemctl enable ssh
-sudo -u "$name" systemctl start ssh
+sudo -u "$name" systemctl enable sshd
+sudo -u "$name" systemctl enable sddm
+sudo -u "$name" systemctl start sshd
 
 # Tap to click
 [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && printf 'Section "InputClass"
