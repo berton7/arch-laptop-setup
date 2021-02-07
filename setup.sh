@@ -230,6 +230,9 @@ cd Orchis-theme && sh install.sh >/dev/null 2>&1 && cd .. && rm -rf Orchis-theme
 # Download and install icons
 git clone https://github.com/vinceliuice/Tela-icon-theme.git --depth 1 >/dev/null 2>&1
 cd Tela-icon-theme && sh install.sh >/dev/null 2>&1 && cd .. && rm -rf Tela-icon-theme
+# Download and install dots theme
+git clone https://github.com/rafacuevas3/dots-theme.git --depth 1 >/dev/null 2>&1
+mv dots-theme/* /usr/share/themes && rm -rf dots-theme
 
 systemctl enable sshd
 systemctl enable sddm
