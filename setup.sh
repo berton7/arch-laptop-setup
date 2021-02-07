@@ -207,7 +207,7 @@ installationloop
 
 # Install oh-my-zsh
 curl -s -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh >/dev/null 2>&1
-ZSH="/home/$name/.config/zsh/.oh-my-zsh" sh install.sh --unattended >/dev/null 2>&1
+sudo -u "$name" ZSH="/home/$name/.config/zsh/.oh-my-zsh" sh install.sh --unattended >/dev/null 2>&1
 
 # Install the dotfiles in the user's home directory
 putgitrepo "$dotfilesrepo" "/home/$name" "$repobranch"
