@@ -233,7 +233,7 @@ cd Tela-icon-theme && sh install.sh >/dev/null 2>&1 && cd .. && rm -rf Tela-icon
 
 systemctl enable sshd
 systemctl enable sddm
-systemctl start sshd
+systemctl enable dhcpcd
 
 # Tap to click
 [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && printf 'Section "InputClass"

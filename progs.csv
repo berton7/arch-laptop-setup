@@ -1,4 +1,5 @@
 #TAG,NAME IN REPO (or git url),PURPOSE (should be a verb phrase to sound right while installing)
+,dhcpcd,Allows you to get a dynamic ip address when connected to a network
 ,networkmanager,Network Manager service
 ,network-manager-applet,NetworkManager system tray for various desktop environments
 ,pulseaudio,Library to control the sound
