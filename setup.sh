@@ -15,7 +15,7 @@ while getopts ":a:r:b:p:h" o; do case "${o}" in
 esac done
 
 [ -z "$dotfilesrepo" ] && dotfilesrepo="https://github.com/berton7/arch-laptop-dotfiles"
-[ -z "$progsfile" ] && progsfile="https://raw.githubusercontent.com/berton7/arch-laptop-setup/progs.csv"
+[ -z "$progsfile" ] && progsfile="https://raw.githubusercontent.com/berton7/arch-laptop-setup/main/progs.csv"
 [ -z "$aurhelper" ] && aurhelper="yay"
 [ -z "$repobranch" ] && repobranch="main"
 
