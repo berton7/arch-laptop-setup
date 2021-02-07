@@ -207,7 +207,7 @@ installationloop
 
 # Install oh-my-zsh
 curl -s -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh >/dev/null 2>&1
-ZSH=~/.config/zsh/.oh-my-zsh sh install.sh --unattended >/dev/null 2>&1
+ZSH="/home/$name/.config/zsh/.oh-my-zsh" sh install.sh --unattended >/dev/null 2>&1
 
 # Install the dotfiles in the user's home directory
 putgitrepo "$dotfilesrepo" "/home/$name" "$repobranch"
@@ -217,23 +217,23 @@ chsh -s /bin/zsh "$name" >/dev/null 2>&1
 
 # Install zsh plugins
 # Powerlevel10k:
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k >/dev/null 2>&1
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "/home/$name/.config/zsh/.oh-my-zsh/custom/themes/powerlevel10k" >/dev/null 2>&1
 # zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting >/dev/null 2>&1
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "/home/$name/.config/zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" >/dev/null 2>&1
 # zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions >/dev/null 2>&1
+git clone https://github.com/zsh-users/zsh-autosuggestions "/home/$name/.config/zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions" >/dev/null 2>&1
 
 # Xfce4 customization
 # Download and install themes
 git clone https://github.com/vinceliuice/Orchis-theme.git --depth 1 >/dev/null 2>&1
-cd Orchis-theme && sh install.sh && cd .. && rm -rf Orchis-theme >/dev/null 2>&1
+cd Orchis-theme && sh install.sh >/dev/null 2>&1 && cd .. && rm -rf Orchis-theme
 # Download and install icons
 git clone https://github.com/vinceliuice/Tela-icon-theme.git --depth 1 >/dev/null 2>&1
-cd Tela-icon-theme && sh install.sh && cd .. && rm -rf Tela-icon-theme >/dev/null 2>&1
+cd Tela-icon-theme && sh install.sh >/dev/null 2>&1 && cd .. && rm -rf Tela-icon-theme
 
-sudo -u "$name" systemctl enable sshd
-sudo -u "$name" systemctl enable sddm
-sudo -u "$name" systemctl start sshd
+systemctl enable sshd
+systemctl enable sddm
+systemctl start sshd
 
 # Tap to click
 [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && printf 'Section "InputClass"

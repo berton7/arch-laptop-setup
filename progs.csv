@@ -1,7 +1,6 @@
 #TAG,NAME IN REPO (or git url),PURPOSE (should be a verb phrase to sound right while installing)
 ,networkmanager,Network Manager service
 ,network-manager-applet,NetworkManager system tray for various desktop environments
-,wget,Tool to download files
 ,pulseaudio,Library to control the sound
 ,pulseaudio-alsa,Library that provides compatibility between pulseaudio and ALSA
 ,pulseaudio-bluetooth,Bluetooth support for PulseAudio
