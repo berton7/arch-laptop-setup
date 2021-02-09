@@ -31,3 +31,6 @@ A,sublime-text3,Fast text editor
 ,qt5-quickcontrols,Some qt5 dependency
 ,qt5-quickcontrols2,Some qt5 dependency
 A,ttf-meslo-nerd-font-powerlevel10k,Fonts recommended by powerlevel10k
+,python3,Python
+,python-pip,Allows you to easily install python packages
+,nvim,Improved version of vim
