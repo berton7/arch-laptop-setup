@@ -230,7 +230,9 @@ ln -s /usr/bin/nvim /usr/bin/vim>/dev/null 2>&1
 # install nvim configuration dependencies
 sudo -u "$name" curl -fLo "/home/$name/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim>/dev/null 2>&1
 sudo -u "$name" pip install pynvim jedi mypy pylint>/dev/null 2>&1
-sudo -u "$name" nvim -u "/home/$name/.config/nvim/init.vim" -c :PlugInstall -c :UpdateRemotePlugins -c :q -c :q --headless --noplugin >/dev/null 2>&1
+git clone "https://github.com/powerline/fonts.git" > /dev/null 2>&1 && sudo -u "$name" sh fonts/install.sh > /dev/null 2>&1 && rm -rf fonts
+sudo -u "$name" nvim -c :PlugInstall -c :q -c :q --headless --noplugin >/dev/null 2>&1
+sudo -u "$name" nvim -c :UpdateRemotePlugins -c :q --headless --noplugin > /dev/null 2>&1
 
 
 # Xfce4 customization
