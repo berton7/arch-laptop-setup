@@ -228,7 +228,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions "/home/$name/.config/
 # link vim to nvim
 ln -s /usr/bin/nvim /usr/bin/vim>/dev/null 2>&1
 # install nvim configuration dependencies
-curl -fLo "/home/$name/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim">/dev/null 2>&1
+curl -fLo "/home/$name/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim>/dev/null 2>&1
 pip install pynvim jedi mypy pylint>/dev/null 2>&1
 nvim -u "/home/$name/.config/nvim/init.vim" -c :PlugInstall -c :q -c :q --headless --noplugin >/dev/null 2>&1
 
@@ -247,6 +247,7 @@ mv dots-theme/* /usr/share/themes && rm -rf dots-theme
 systemctl enable sshd
 systemctl enable sddm
 systemctl enable dhcpcd
+systemctl enable NetworkManager
 
 # Tap to click
 [ ! -f /etc/X11/xorg.conf.d/40-libinput.conf ] && printf 'Section "InputClass"
